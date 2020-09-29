@@ -341,6 +341,7 @@ class ImportExport extends React.Component {
           }
         } else {
           trailHydrants.forEach((hydrant) => {
+            //console.log(hydrant.coords);
             hydrantsRows.push([
               trailName, 
               hydrant.name, 
@@ -364,19 +365,17 @@ class ImportExport extends React.Component {
     });
     const csvContent = lineArray.join("\n")
     const encodedUri = encodeURI(csvContent);
-    // window.location.assign(encodedUri);
     downloadjs(encodedUri, `Hydrants_Table.csv`);
 
     // Download Trail CSV
-    
-    const trailLineArray = []
-    trailsRows.forEach((r, i) => {
-      const trailLine = r.join(",")
-      trailLineArray.push(i === 0 ? "data:text/csv;charset=utf-8," + trailLine : trailLine);
+    const trailLineArray = ["data:text/csv;charset=utf-8,", trailCsvHeaders];
+    Object.keys(trailGeo).forEach(key => {
+      // quotes are to prevent csv parser from separating values into new columns
+      trailLineArray.push([key, '"' + JSON.stringify(trailGeo[key]) + '"']); 
     });
-    const trailCsvContent = trailLineArray.join("\n")
+
+    const trailCsvContent = trailLineArray.join("\n");
     const trailEncodedUri = encodeURI(trailCsvContent);
-    // window.location.assign(trailEncodedUri);
     downloadjs(trailEncodedUri, `Trails_Table.csv`);
   }
 
