@@ -364,7 +364,7 @@ class ImportExport extends React.Component {
     });
     const csvContent = lineArray.join("\n")
     const encodedUri = encodeURI(csvContent);
-    window.location.assign(encodedUri);
+    // window.location.assign(encodedUri);
     downloadjs(encodedUri, `Hydrants_Table.csv`);
 
     // Download Trail CSV
@@ -376,7 +376,7 @@ class ImportExport extends React.Component {
     });
     const trailCsvContent = trailLineArray.join("\n")
     const trailEncodedUri = encodeURI(trailCsvContent);
-    window.location.assign(trailEncodedUri);
+    // window.location.assign(trailEncodedUri);
     downloadjs(trailEncodedUri, `Trails_Table.csv`);
   }
 
