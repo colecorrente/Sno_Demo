@@ -305,9 +305,9 @@ class ImportExport extends React.Component {
         trailName = trail.get('features')[0].get('originalTrailName') ? trail.get('features')[0].get('originalTrailName') : trailName
       }
 
-      // Build GeoJSON for trials
-      const trailCoords = trail.get('features')[0].getGeometry().getCoordinates();
-      trailGeo[trailName] = trailCoords;
+      // Build GeoJSON for trials - convert to Lat Lon
+      const trailCoords = trail.get('features')[0].getGeometry().transform('EPSG:3857', 'EPSG:4326');
+      trailGeo[trailName] = trailCoords.getCoordinates();
       // End Build GeoJSON for Trails
 
       const trailHydrants = _
