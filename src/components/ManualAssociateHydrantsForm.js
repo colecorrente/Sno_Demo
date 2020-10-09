@@ -88,8 +88,8 @@ class ManualAssociateHydrantsForm extends React.Component {
       <Button
         style={{ cursor: 'pointer', backgroundColor: 'green', marginLeft: 10 }}
         onClick={() => this.confirmAssignment(hydrant)}
-        variant="fab"
-        mini
+        variant="contained"
+        mini="true"
       >
         <Check
           style={{ color: 'white', fontSize: 20 }}
@@ -144,7 +144,7 @@ class ManualAssociateHydrantsForm extends React.Component {
 dataImported({ hydrants });
           this.endManualAssignment();
 }}
-              variant="raised"
+              variant="contained"
               color="primary"
               style={{ marginTop: 10 }}
               fullWidth

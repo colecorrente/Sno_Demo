@@ -42,7 +42,8 @@ const styles = theme => ({
     marginTop: 10,
   },
   selectEmpty: {
-    marginTop: theme.spacing.unit * 2,
+    // marginTop: theme.spacing.unit * 2,
+    marginTop: theme.spacing(2),
   },
 });
 
@@ -444,8 +445,8 @@ class ImportExport extends React.Component {
                         component="span"
                         color="primary"
                         // variant="raised"
-                        variant="fab"
-                        mini
+                        variant="contained"
+                        mini="true"
                       >
                         <FileUpload />
                       </Button>
@@ -462,8 +463,8 @@ class ImportExport extends React.Component {
 
             <Grid item xs={6}>
 
-              <FormLabel> Export </FormLabel>
               <FormControl fullWidth className={classes.formControl}>
+                <FormLabel> Export </FormLabel>
                 <Select
                   value={this.state.selectedExport}
                   onChange={(e) => {
@@ -477,6 +478,8 @@ class ImportExport extends React.Component {
                   <MenuItem value="hydrants">Hydrants</MenuItem>
                 </Select>
                 <FormHelperText> Layer </FormHelperText>
+              </FormControl>
+              <FormControl fullWidth className={classes.formControl}>
 
                 <Select
                   value={this.state.exportType}
@@ -486,18 +489,19 @@ class ImportExport extends React.Component {
                   <MenuItem value="GJ">GeoJson</MenuItem>
                 </Select>
                 <FormHelperText> Format </FormHelperText>
-
-                <Grid style={{ marginTop: 15 }} item xs={6}>
-                  <FormControl>
-                    <Input
-                      id="export-name"
-                      value={this.state.exportName}
-                      onChange={(e) => { this.setState({ exportName: e.target.value }); }}
-                    />
-                    <FormHelperText>File Name </FormHelperText>
-                  </FormControl>
-                </Grid>
               </FormControl>
+
+              <Grid style={{ marginTop: 15 }} item xs={6}>
+                <FormControl>
+                  <Input
+                    id="export-name"
+                    value={this.state.exportName}
+                    onChange={(e) => { this.setState({ exportName: e.target.value }); }}
+                  />
+                  <FormHelperText>File Name </FormHelperText>
+                </FormControl>
+              </Grid>
+              {/* </FormControl> */}
 
               {
               selectedExport === 'hydrants' ? (

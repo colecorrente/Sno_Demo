@@ -249,15 +249,15 @@ class Container extends React.Component {
               or adding features manually.
             </Typography>
 
-            <Button color="primary" variant="raised" onClick={this.newTrailClicked} fullWidth>
+            <Button color="primary" variant="contained" onClick={this.newTrailClicked} fullWidth>
             Create A Trail
             </Button>
 
-            <Button color="primary" variant="raised" onClick={() => { interactionChanged('DRAW_MODIFY_HYDRANTS'); }} fullWidth>
+            <Button color="primary" variant="contained" onClick={() => { interactionChanged('DRAW_MODIFY_HYDRANTS'); }} fullWidth>
             Drop Hydrants
             </Button>
 
-            <Button color="primary" variant="raised" onClick={() => this.setImportExportOpen(true)} fullWidth>
+            <Button color="primary" variant="contained" onClick={() => this.setImportExportOpen(true)} fullWidth>
               Import Features
             </Button>
 
@@ -344,12 +344,14 @@ class Container extends React.Component {
             )
             }
 
-              <Typography variant="title" color="inherit" noWrap>
+              {/* <Typography variant="title" color="inherit" noWrap> */}
+              <Typography variant="h5" color="inherit" noWrap>
                 SnoTrack
               </Typography>
 
               <div>
-                <Grid style={{ marginLeft: 50 }} container spacing={40}>
+                {/* <Grid style={{ marginLeft: 50 }} container spacing={40}> */}
+                <Grid style={{ marginLeft: 50 }} container spacing={1}>
                   <Grid item>
                     <Tooltip title="New Trail">
                       <IconButton
@@ -382,7 +384,7 @@ class Container extends React.Component {
                     <Tooltip title="Import/Export" >
                       <IconButton
                         onClick={() => this.setImportExportOpen(true)}
-                        variant="raised"
+                        variant="contained"
                         color="secondary"
                       >
                         <ImportExportIcon />
@@ -401,7 +403,7 @@ class Container extends React.Component {
                         getElevations()
                         .then(elevMessage => this.setState({ message: elevMessage }));
 }}
-                        variant="raised"
+                        variant="contained"
                         color="secondary"
                       >
                         <Refresh />

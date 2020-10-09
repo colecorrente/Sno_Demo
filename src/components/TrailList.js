@@ -17,7 +17,8 @@ const CustomTableCell = withStyles(theme => ({
 
 class TrailList extends React.Component {
   state = {
-    // isSelected: false
+    // eslint-disable-next-line react/no-unused-state
+    isSelected: false,
   }
 
 
@@ -31,7 +32,7 @@ class TrailList extends React.Component {
       // editableTrail,
     } = this.props;
 
-    const id = { trail };
+    const { id } = trail;
     const isSelected = selected === id;
     // const isEditable = editableTrail === id;
     const rowClass = isSelected ? 'selected' : '';
@@ -100,8 +101,8 @@ class TrailList extends React.Component {
         <Table>
           <TableHead>
             <TableRow>
-              <CustomTableCell padding="dense">Trail Name</CustomTableCell>
-              <CustomTableCell padding="dense">Hydrants</CustomTableCell>
+              <CustomTableCell>Trail Name</CustomTableCell>
+              <CustomTableCell>Hydrants</CustomTableCell>
               <CustomTableCell />
             </TableRow>
           </TableHead>
@@ -112,9 +113,9 @@ class TrailList extends React.Component {
                 style={{ borderTop: '2px solid black', cursor: 'pointer' }}
                 onClick={() => { toggleOrphanSelect(); }}
               >
-                <TableCell padding="dense">Orphans</TableCell>
-                <TableCell padding="dense">{orphanCount}</TableCell>
-                <TableCell padding="dense" >
+                <TableCell>Orphans</TableCell>
+                <TableCell>{orphanCount}</TableCell>
+                <TableCell>
                   <AutoAssociate
                     orphanRowSelected={orphanRowSelected}
                     toggleOrphanSelect={toggleOrphanSelect}

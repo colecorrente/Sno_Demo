@@ -115,6 +115,8 @@ class HydrantListItem extends React.Component {
                 value={hydrant.get('coords')[0]}
                 onChange={(e) => { this.updateCoords(e, hydrant, 0); }}
               />
+            </FormControl>
+            <FormControl>
               <FormHelperText>Lng.</FormHelperText>
               { hydrantElevation ? (
                 <Input
@@ -125,7 +127,7 @@ class HydrantListItem extends React.Component {
                ) : (
                  <Button
                    style={{ borderBottom: '1px solid' }}
-                   variant="flat"
+                   variant="contained"
                    onClick={() => {
                    getElevations()
                    .then(elevMessage => this.setState({ message: elevMessage }));

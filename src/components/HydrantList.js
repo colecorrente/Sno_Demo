@@ -117,8 +117,8 @@ class HydrantList extends React.Component {
             </FormControl>
             <Tooltip title="Apply Prefix">
               <Button
-                variant="flat"
-                mini
+                variant="contained"
+                mini="true"
                 onClick={this.applyPrefix}
               >
                 <Check style={{ color: 'green' }} />
@@ -128,7 +128,7 @@ class HydrantList extends React.Component {
           <ListItem>
             <Button
               color="primary"
-              variant="raised"
+              variant="contained"
               onClick={this.renameHydrants}
             >
               Re-Name By Elevation

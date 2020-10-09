@@ -44,7 +44,8 @@ const styles = theme => ({
     marginBottom: 12,
   },
   nested: {
-    paddingLeft: theme.spacing.unit * 4,
+    // paddingLeft: theme.spacing.unit * 4,
+    paddingLeft: theme.spacing(4),
   },
   mini: {
     boxShadow: '0px -1px 6px 6px rgba(0, 0, 0, 0.29), 0px 6px 10px 0px rgba(0, 0, 0, 0.14), 0px 1px 18px 0px rgba(0, 0, 0, 0.12)',
@@ -154,7 +155,7 @@ class TrailForm extends React.Component {
             <List className={classes.root}>
               <ListItem disableGutters >
                 <FormControl>
-                  <Typography variant="subheading"> Edit Mode: </Typography>
+                  <Typography variant="button"> Edit Mode: </Typography>
                   <RadioGroup
                     style={{ flexDirection: 'row' }}
                     value={interaction}
@@ -200,7 +201,7 @@ class TrailForm extends React.Component {
               className={classes.raisedPrimary}
               fullWidth
               style={{ marginTop: 10 }}
-              variant="raised"
+              variant="outlined"
               onClick={() => { this.toggleConfirmation(true); }}
             > Delete Trail
             </Button>
