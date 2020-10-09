@@ -278,6 +278,8 @@ class ImportExport extends React.Component {
           .value()
           .forEach((h, index) => {
             const { feature } = h;
+            // console.log(feature);
+            // console.log(h.feature);
             feature.set('description', `${trailName},${index + 1},${feature.get('name')}`);
             feature.unset('selected');
             hydrantFeatures.push(feature);
@@ -300,8 +302,10 @@ class ImportExport extends React.Component {
   }
 
   generateCSV = () => {
+    console.log('generateCSV');
     const trailGeo = {};
     const { hydrants, trails } = this.props;
+    // console.log(trails);
     // console.log('Trails...');
     // console.log(trails);
     // console.log('Hydrants...');
@@ -312,18 +316,23 @@ class ImportExport extends React.Component {
     hydrantsRows.push(this.state.useLegacyCSV ? [legacyCsvHeaders] : [csvHeaders]);
     trailsRows.push([trailCsvHeaders]);
 
+    // console.log(trails);
     trails.keySeq().forEach((trailId) => {
       const trail = trails.get(trailId);
       let trailName = trail.get('name').split(' ').join('_');
 
       if (trail.get('features')[0]) {
         trailName = trail.get('features')[0].get('originalTrailName') ? trail.get('features')[0].get('originalTrailName') : trailName;
+        // Build GeoJSON for trials - convert to Lat Lon
+        // we need to clone it first so that we don't modify the original feature
+        let trailCoords = trail.get('features')[0].clone();
+        trailCoords = trailCoords.getGeometry().transform('EPSG:3857', 'EPSG:4326');
+        // console.log(trailCoords);
+        trailGeo[trailName] = trailCoords.getCoordinates();
+        // End Build GeoJSON for Trails
+        trailsRows.push([trailName, trailGeo[trailName]]);
       }
 
-      // Build GeoJSON for trials - convert to Lat Lon
-      const trailCoords = trail.get('features')[0].getGeometry().transform('EPSG:3857', 'EPSG:4326');
-      trailGeo[trailName] = trailCoords.getCoordinates();
-      // End Build GeoJSON for Trails
 
       const trailHydrants = _
         .chain(hydrants.toJS())
@@ -373,7 +382,6 @@ class ImportExport extends React.Component {
           ]);
         });
       }
-      trailsRows.push([trailName, trailGeo[trailName]]);
     //  console.log(trailGeo[trailName]);
     // console.log(hydrantsRows);
     // console.log(trailGeo);
